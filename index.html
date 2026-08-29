@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feliz Cumpleaños Papá Francisco</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Work+Sans:wght@400;500;600&family=Caveat:wght@600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Fondo decorativo: cielo con estrellas y silueta de montañas -->
+  <div class="sky" aria-hidden="true">
+    <div class="stars"></div>
+    <div class="mountains"></div>
+  </div>
+
+  <main>
+
+    <!-- HERO: nombre y saludo principal -->
+    <section class="hero">
+      <p class="hero__eyebrow">Hoy celebramos a</p>
+      <h1 class="hero__title">
+        Francisco Miguel<br />
+        Miranda Rosales
+      </h1>
+      <p class="hero__subtitle">¡Feliz cumpleaños, papá!</p>
+
+      <!-- Vela interactiva -->
+      <div class="candle-wrap">
+        <button class="candle" id="candleBtn" aria-label="Toca para soplar la vela">
+          <span class="flame" id="flame"></span>
+          <span class="candle__body"></span>
+        </button>
+        <p class="candle__hint" id="candleHint">Toca la vela y pide un deseo para papá 🎂</p>
+      </div>
+    </section>
+
+    <!-- MENSAJE PRINCIPAL -->
+    <section class="message">
+      <div class="message__card">
+        <p class="message__paragraph">
+          Papá, aunque hoy no estés con nosotros en Puno, te sentimos muy
+          cerca. Queremos que sepas cuánto agradecemos todo tu esfuerzo por
+          nosotros, y que este mensaje llegue con todo nuestro cariño hasta
+          donde estés.
+        </p>
+        <p class="message__paragraph">
+          Gracias por el apoyo que nos das a cada uno, a tu manera, siempre
+          presente en lo importante. Hoy queremos celebrarte a ti, papá,
+          porque te lo mereces.
+        </p>
+        <p class="message__signature">Con cariño, tu familia 💛</p>
+      </div>
+    </section>
+
+    <!-- ACCIÓN: confeti / celebrar -->
+    <section class="celebrate">
+      <button class="celebrate__btn" id="celebrateBtn">
+        🎉 Celebrar a papá
+      </button>
+    </section>
+
+    <footer class="footer">
+      <p>Hecho con cariño para papá Francisco</p>
+    </footer>
+
+  </main>
+
+  <!-- Contenedor donde se generará el confeti -->
+  <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,361 @@
+/* =========================================================
+   VARIABLES / TOKENS DE DISEÑO
+   Cambia estos valores para ajustar colores y tipografías
+   fácilmente en toda la página.
+   ========================================================= */
+:root {
+  --color-night: #16213e;      /* azul noche profundo (fondo) */
+  --color-night-deep: #0e1530; /* azul noche aún más oscuro */
+  --color-gold: #eab54e;       /* dorado, color de la vela / acentos */
+  --color-gold-soft: #f6d98c;  /* dorado claro, hover / brillo */
+  --color-coral: #e4694f;      /* coral cálido, acento secundario */
+  --color-cream: #f7f1e3;      /* texto principal claro */
+  --color-cream-dim: #cfc8ba;  /* texto secundario */
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Work Sans", "Segoe UI", sans-serif;
+  --font-signature: "Caveat", cursive;
+
+  --radius-lg: 24px;
+  --radius-md: 14px;
+
+  --max-width: 640px;
+}
+
+/* =========================================================
+   RESET BÁSICO
+   ========================================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-night);
+  color: var(--color-cream);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  line-height: 1.5;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+/* Respeta a usuarios que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================================
+   FONDO DECORATIVO: cielo, estrellas y montañas
+   ========================================================= */
+.sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(
+    ellipse at 50% -10%,
+    var(--color-night) 0%,
+    var(--color-night-deep) 70%
+  );
+  overflow: hidden;
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20% 20%, var(--color-cream) 0%, transparent 60%),
+    radial-gradient(1.5px 1.5px at 70% 15%, var(--color-cream) 0%, transparent 60%),
+    radial-gradient(1.5px 1.5px at 85% 35%, var(--color-cream) 0%, transparent 60%),
+    radial-gradient(2px 2px at 10% 45%, var(--color-cream) 0%, transparent 60%),
+    radial-gradient(1.5px 1.5px at 40% 10%, var(--color-cream) 0%, transparent 60%),
+    radial-gradient(1.5px 1.5px at 60% 55%, var(--color-cream) 0%, transparent 60%),
+    radial-gradient(2px 2px at 90% 65%, var(--color-cream) 0%, transparent 60%),
+    radial-gradient(1.5px 1.5px at 30% 70%, var(--color-cream) 0%, transparent 60%);
+  opacity: 0.55;
+  animation: twinkle 6s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.35; }
+  to { opacity: 0.7; }
+}
+
+.mountains {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 22vh;
+  background: linear-gradient(180deg, transparent 0%, var(--color-night-deep) 100%);
+  clip-path: polygon(
+    0% 100%, 0% 60%, 10% 45%, 22% 65%, 32% 30%,
+    45% 58%, 58% 20%, 70% 55%, 82% 38%, 92% 62%,
+    100% 48%, 100% 100%
+  );
+  background-color: #0a0f24;
+  opacity: 0.9;
+}
+
+/* =========================================================
+   LAYOUT GENERAL
+   ========================================================= */
+main {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 48px 20px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding-top: 16px;
+}
+
+.hero__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.75rem;
+  color: var(--color-gold-soft);
+  font-weight: 600;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.8rem, 7vw, 2.6rem);
+  line-height: 1.15;
+  color: var(--color-cream);
+}
+
+.hero__subtitle {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.1rem, 4.5vw, 1.4rem);
+  color: var(--color-coral);
+  margin-top: 4px;
+}
+
+/* --- Vela interactiva (elemento firma de la página) --- */
+.candle-wrap {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.candle {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px 0;
+  transition: transform 0.2s ease;
+}
+
+.candle:active {
+  transform: scale(0.96);
+}
+
+.candle__body {
+  width: 22px;
+  height: 60px;
+  border-radius: 6px;
+  background: linear-gradient(180deg, var(--color-gold-soft), var(--color-gold));
+  box-shadow: inset -3px 0 6px rgba(0, 0, 0, 0.2);
+}
+
+.flame {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 26px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: radial-gradient(circle at 50% 70%, #fff3c4, var(--color-coral) 70%);
+  box-shadow: 0 0 18px 4px rgba(234, 181, 78, 0.55);
+  animation: flicker 1.4s ease-in-out infinite;
+  transform-origin: bottom center;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.flame.is-out {
+  opacity: 0;
+  transform: translateX(-50%) scaleY(0.2);
+}
+
+@keyframes flicker {
+  0%, 100% { transform: translateX(-50%) rotate(-3deg) scale(1); }
+  50% { transform: translateX(-50%) rotate(3deg) scale(1.05); }
+}
+
+.candle__hint {
+  font-size: 0.85rem;
+  color: var(--color-cream-dim);
+}
+
+/* =========================================================
+   MENSAJE PRINCIPAL
+   ========================================================= */
+.message__card {
+  background: rgba(247, 241, 227, 0.06);
+  border: 1px solid rgba(247, 241, 227, 0.12);
+  border-radius: var(--radius-lg);
+  padding: 28px 22px;
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.message__paragraph {
+  font-size: 1rem;
+  color: var(--color-cream);
+  line-height: 1.7;
+}
+
+.message__signature {
+  font-family: var(--font-signature);
+  font-size: 1.7rem;
+  color: var(--color-gold-soft);
+  text-align: right;
+  margin-top: 4px;
+}
+
+/* =========================================================
+   BOTÓN CELEBRAR / CONFETI
+   ========================================================= */
+.celebrate {
+  display: flex;
+  justify-content: center;
+}
+
+.celebrate__btn {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-night-deep);
+  background: linear-gradient(180deg, var(--color-gold-soft), var(--color-gold));
+  padding: 14px 30px;
+  border-radius: 999px;
+  box-shadow: 0 10px 24px -8px rgba(234, 181, 78, 0.55);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.celebrate__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -8px rgba(234, 181, 78, 0.65);
+}
+
+.celebrate__btn:focus-visible,
+.candle:focus-visible {
+  outline: 3px solid var(--color-coral);
+  outline-offset: 3px;
+}
+
+.celebrate__btn:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.footer {
+  text-align: center;
+  padding-top: 8px;
+  padding-bottom: 12px;
+  font-size: 0.8rem;
+  color: var(--color-cream-dim);
+}
+
+/* =========================================================
+   CAPA DE CONFETI (generada por JS)
+   ========================================================= */
+.confetti-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -10px;
+  border-radius: 2px;
+  animation-name: fall;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  animation-fill-mode: forwards;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh) rotate(540deg);
+    opacity: 0.9;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE: pantallas más grandes (tablet / escritorio)
+   ========================================================= */
+@media (min-width: 600px) {
+  main {
+    padding: 72px 24px 48px;
+    gap: 72px;
+  }
+
+  .message__card {
+    padding: 40px 48px;
+  }
+
+  .message__paragraph {
+    font-size: 1.05rem;
+  }
+}
+
+@media (min-width: 900px) {
+  main {
+    max-width: 720px;
+  }
+}
